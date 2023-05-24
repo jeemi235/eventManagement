@@ -1,0 +1,83 @@
+--users table
+
+create sequence u_id;
+
+create table users(
+id int primary key default nextval('u_id'),
+name string not null,
+phone varchar(10) not null);
+
+insert
+	into
+	users(name,
+	phone)
+values('jeemi',
+8954784125);
+
+--events table
+create sequence e_id;
+
+create table events(
+id int primary key default nextval('e_id'),
+name string not null,
+date date not null,
+duration varchar not null,
+location string not null,
+category string not null,
+description varchar not null,
+price varchar not null,
+hosted_by int references users(id)
+);
+
+insert
+	into
+	events(
+	name,
+	date,
+	duration,
+	location,
+	category,
+	description,
+	price,
+	hosted_by)
+values('greens cricket tournament',
+	'2023-04-20',
+	'05 hrs',
+	'ahmedabad',
+	'sports',
+	'it is an 20 days cricket tournament for 10 teams',
+	'200 Rs',
+	'1'
+	);
+
+--events-user table
+
+create sequence eu_id;
+
+create table events_User(
+id int primary key default nextval ('eu_id'),
+event_id int references events(id),
+user_id int references users(id),
+unique(event_id,user_id)
+);
+
+insert into events_user (event_id,user_id) values(1,1);
+
+--end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

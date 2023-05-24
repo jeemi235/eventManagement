@@ -1,0 +1,77 @@
+#we need to define all the types, mutations and queries here
+
+type User {
+  id: ID!
+  name: String!
+  phone: String!
+}
+
+type Event{
+  id:ID!
+  name:String!
+  date:String!
+  duration:String!
+  location:String!
+  category:String!
+  description:String!
+  price:String!
+  hosted_by:ID!
+}
+
+type Event_User{
+  id:ID!
+  event_id:ID!
+  user_id:ID!
+}
+
+input NewUser {
+  name: String!
+  phone: String!
+}
+
+input NewEvent{
+  name:String!
+  date:String!
+  duration:String!
+  location:String!
+  category:String!
+  description:String!
+  price:String!
+  hosted_by:ID!
+}
+
+input NewEvent_User{
+  event_id:ID!
+  user_id:ID!
+}
+
+input UpdateEvent{
+  id:ID!
+  name:String!
+  date:String!
+  duration:String!
+  location:String!
+  category:String!
+  description:String!
+  price:String!
+}
+
+type Mutation {
+  createUser(input: NewUser!): User!
+  createEvent(input: NewEvent!): Event!
+  updateEvent(input:UpdateEvent!):Event!
+  deleteEvent(id:ID!):String!
+  bookevent(input: NewEvent_User!): Event_User!
+}
+
+type Query {
+  User: [User!]!
+  Event: [Event!]!
+  Event_User(id:ID!):[Event_User!]!
+  Event_Hostby(id:ID!):[Event!]!
+  Past_Events:[Event!]!
+  eventByCategory(category:String!):[Event!]!
+  eventByLocation(location:String!):[Event!]!
+  users(id:ID!):User!
+  usersByIDs(ids:[ID!]!): [User!]!
+}

@@ -1,0 +1,153 @@
+mutation createUser($input:NewUser!){
+  createUser(input:$input){
+    name
+    phone
+  }
+}
+{
+  "input": {
+    "name": "king",
+    "phone": "9456971523"
+  }
+}
+
+query Users{
+  User{
+    id
+    name
+    phone
+  }
+}
+
+mutation createEvent($input:NewEvent!){
+  createEvent(input:$input){
+    name
+    date
+    duration
+    location
+    category
+    description
+    price
+    hosted_by
+  }
+}
+
+{
+  "input": {
+    "name": "Book fair",
+    "date": "2023-04-23",
+    "duration": "8 hrs",
+    "location": "Gandhinagar",
+    "category": "Education",
+    "description": "it is an book fair in which all books will be available at 50% off",
+    "price": "Free entry",
+    "hosted_by": "1"
+  }
+}
+
+query Event{
+  Event{
+    id
+    name
+    date
+    duration
+    location
+    category
+    description
+    price
+    hosted_by
+  }
+}
+
+mutation bookevent($input:NewEvent_User!){
+  bookevent(input:$input){
+    event_id
+    user_id
+  }
+}
+
+{
+  "input": {
+    "event_id": 4,
+    "user_id": 8
+  }
+}
+
+query event_user{
+  Event_User(id:1){
+    user_id
+  }
+}
+
+mutation deleteevent($input:ID!){
+  deleteEvent(id:$input)
+}
+
+{
+  "input": "4"
+}
+
+mutation updateevent($input:UpdateEvent!){
+  updateEvent(input:$input){
+    price
+    id
+    name
+    date
+    duration
+    location
+    category
+    description
+  }
+}
+
+{
+  "input": {
+    "price": "50 RS",
+    "id": 5,
+    "name": "Book fair",
+    "date": "2023-04-23",
+    "duration": "8 hrs",
+    "location": "Gandhinagar",
+    "category": "Education",
+    "description": "it is an book fair in which all books will be available at 50% off"
+  }
+}
+
+query pastevents{
+  Past_Events{
+    id
+    name
+    date
+    duration
+    price
+  }
+}
+
+query hostby{
+  Event_Hostby(id:1){
+    id
+    name
+    hosted_by
+  }
+}
+
+query eventbycategory{
+  eventByCategory(category:"concert"){
+  id
+  name
+  category
+  price
+  hosted_by
+  }
+}
+
+query eventByLocation{
+  eventByLocation(location:"ahmedabad"){
+    id
+ 		name
+  	category
+    location
+  	price
+    hosted_by
+  }
+}
